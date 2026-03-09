@@ -161,13 +161,13 @@ function useCloudData() {
   return state;
 }
 
-function useIntersection(ref, options = {}) {
+function useIntersection(ref) {
   const [isVisible, setIsVisible] = useState(false);
   useEffect(() => {
     if (!ref.current) return;
     const obs = new IntersectionObserver(
       ([entry]) => { if (entry.isIntersecting) setIsVisible(true); },
-      { threshold: 0.15, ...options }
+      { threshold: 0.15 }
     );
     obs.observe(ref.current);
     return () => obs.disconnect();
